@@ -45,7 +45,6 @@ app.get("/pokemon", (req, res) => {
 // get pokemon by id
 app.get("/pokemon/:id", (req, res) => {
   const pokemonId = req.params.id;
-  console.log(req.params.id);
   const pokemon = jsonData.find(_item => _item.id === parseInt(pokemonId));
   if (pokemon) {
      res.json(pokemon);
