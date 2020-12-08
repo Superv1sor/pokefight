@@ -7,7 +7,6 @@ var logger = require("morgan");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
-var pokemonRouter = require("./routes/pokemon");
 
 var app = express();
 
@@ -35,13 +34,51 @@ app.use(
   })
 );
 
+// Import file
+let jsonData = require("./pokedex.json");
+// const fs = require("fs");
+// const hnDataFileRaw = fs.readFileSync('./pokedex.json');
+// let hnDataFileJson = JSON.parse(hnDataFileRaw);
+// get all pokemons
+app.get("/pokemon", (req, res) => {
+  res.json(jsonData);
+});
+
+// get pokemon by id
+app.get("/pokemon/:id", (req, res) => {
+  const pokemonId = req.params.id;
+  console.log(req.params.id);
+  const pokemon = jsonData.find((_item) => _item.id === parseInt(pokemonId));
+  if (pokemon) {
+    res.json(pokemon);
+  } else {
+    res.json({ message: `Pokemon ${pokemonId} doesn't exist` });
+  }
+});
+
+// get pokemon name by id
+// app.use(bodyParser.json()); // support json encoded bodies
+// app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+app.get("/pokemon/:id/:info", (req, res) => {
+  const pokemonId = req.params.id;
+  const pokemon = jsonData.find((_item) => _item.id === parseInt(pokemonId));
+  if (pokemon) {
+    res.json(pokemon.name.english);
+  } else {
+    res.json({ message: `Pokemon ${pokemonId} doesn't exist` });
+  }
+});
+
+// get pokemon by position in array
+// app.get('/test/:id', (req, res) => {
+//   return res.json(jsonData[req.params.id]);
+// });
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
 
 app.use(logger("dev"));
-app.use(logger("common"));
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -49,7 +86,6 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use("/pokemon", pokemonRouter);
 
 // myCode
 app.get("/hello", (req, res) => {
