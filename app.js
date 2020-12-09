@@ -17,7 +17,7 @@ var app = express();
 // bc of CORS error, use this:
 const cors = require("cors");
 
-var allowedOrigins = ["http://localhost:3000", "http://yourapp.com"];
+var allowedOrigins = ["http://localhost:3005", "http://yourapp.com"];
 app.use(
   cors({
     origin: function (origin, callback) {
