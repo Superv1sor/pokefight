@@ -1,10 +1,6 @@
 // import DB
 let db = require("../models/pokemon.json");
 
-// const fs = require("fs");
-// const rawdb = fs.readFileSync("./model/fakePokemonDatabase.json");
-// const db = JSON.parse(rawdb);
-
 exports.getAllPokemon = function (req, res) {
   res.json(db);
 };
