@@ -1,0 +1,27 @@
+// make new projectfolder:
+$ mkdir <projectname>
+$ cd <projectname>
+// create an application skeleton:
+$ npx express-generator
+
+// install express cors
+$ npm install
+$ npm install cors
+
+// start server
+$ npm start
+
+// open IDE
+$ code .
+
+// install nodemon
+$ npm i -D nodemon
+
+
+// Heroku
+
+1. Install Heroku CLI
+
+2. $ heroku local web
+
+3. $ heroku login
