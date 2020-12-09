@@ -18,6 +18,7 @@ var app = express();
 const cors = require("cors");
 
 var allowedOrigins = [
+  "http://localhost:3000",
   "http://localhost:3005",
   "https://pokefight-client.netlify.app/",
 ];
