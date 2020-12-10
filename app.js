@@ -13,6 +13,7 @@ var app = express();
 
 // please change the port in /bin/www
 // const port = 4007;
+// const port = process.env.PORT || "4027";
 
 // bc of CORS error, use this:
 const cors = require("cors");
